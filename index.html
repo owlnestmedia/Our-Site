@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Owlnest Media — Brand ko do Digital Pankh</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --neon: #00D4FF;
+      --neon2: #0099CC;
+      --neon-glow: rgba(0,212,255,0.18);
+      --dark: #050A0F;
+      --dark2: #080F17;
+      --dark3: #0A1520;
+      --card: #0D1B26;
+      --card2: #0F2030;
+      --text: #E8F4F8;
+      --muted: #6A8FA5;
+      --border: rgba(0,212,255,0.13);
+      --border2: rgba(0,212,255,0.25);
+      --ff: 'Inter', sans-serif;
+      --fp: 'Poppins', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--dark);
+      color: var(--text);
+      font-family: var(--ff);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--dark); }
+    ::-webkit-scrollbar-thumb { background: var(--neon2); border-radius: 10px; }
+
+    /* ─── CURSOR GLOW ─── */
+    #cursor-glow {
+      width: 300px; height: 300px;
+      position: fixed; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,212,255,0.05) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+      transform: translate(-50%, -50%);
+      transition: left 0.15s ease, top 0.15s ease;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      background: rgba(5,10,15,0.88);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 6%;
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--fp); font-weight: 800; font-size: 19px;
+      letter-spacing: -0.5px; cursor: pointer;
+    }
+    .logo-icon {
+      width: 38px; height: 38px;
+      background: var(--card);
+      border: 1px solid var(--border2);
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 0 12px rgba(0,212,255,0.15);
+    }
+    .logo .accent { color: var(--neon); }
+    .nav-links {
+      display: flex; gap: 36px;
+      font-size: 13px; font-weight: 500; color: var(--muted);
+    }
+    .nav-links a {
+      position: relative; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--neon); }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 1px; background: var(--neon);
+      transform: scaleX(0); transition: transform 0.2s;
+    }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta {
+      background: var(--neon); color: var(--dark);
+      font-size: 13px; font-weight: 700;
+      padding: 10px 22px; border-radius: 7px; border: none;
+      cursor: pointer; font-family: var(--ff);
+      letter-spacing: -0.2px;
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      box-shadow: 0 0 20px rgba(0,212,255,0.3);
+    }
+    .nav-cta:hover {
+      background: #00e5ff;
+      box-shadow: 0 0 30px rgba(0,212,255,0.5);
+      transform: translateY(-1px);
+    }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 110px 6%; position: relative; }
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(0,212,255,0.07);
+      border: 1px solid var(--border2);
+      color: var(--neon);
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 7px 16px; border-radius: 20px; margin-bottom: 26px;
+    }
+    .section-tag::before {
+      content: ''; width: 5px; height: 5px;
+      background: var(--neon); border-radius: 50%;
+      animation: blink 2s infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.2;} }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 110px 6% 80px;
+      background:
+        radial-gradient(ellipse 90% 70% at 50% -5%, rgba(0,212,255,0.10) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 50% at 85% 60%, rgba(0,153,204,0.06) 0%, transparent 50%);
+      overflow: hidden;
+    }
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1.05fr 0.95fr;
+      gap: 60px; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(0,212,255,0.06);
+      border: 1px solid var(--border2);
+      color: var(--neon); font-size: 11px; font-weight: 600;
+      letter-spacing: 1.8px; text-transform: uppercase;
+      padding: 8px 18px; border-radius: 24px; margin-bottom: 30px;
+    }
+    .hero-badge .dot {
+      width: 7px; height: 7px; background: var(--neon);
+      border-radius: 50%; animation: blink 2s infinite;
+    }
+    .hero h1 {
+      font-family: var(--fp); font-size: clamp(42px,5.5vw,70px);
+      font-weight: 900; line-height: 1.05;
+      letter-spacing: -2.5px; margin-bottom: 22px;
+    }
+    .hero h1 .line2 { color: var(--neon); display: block; }
+    .hero-sub {
+      font-size: 17px; color: var(--muted);
+      line-height: 1.75; max-width: 490px; margin-bottom: 40px;
+    }
+    .hero-ctas { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--neon); color: var(--dark);
+      font-size: 14px; font-weight: 700;
+      padding: 15px 30px; border-radius: 8px; border: none;
+      cursor: pointer; font-family: var(--ff); letter-spacing: -0.2px;
+      transition: all 0.2s;
+      box-shadow: 0 0 24px rgba(0,212,255,0.35);
+    }
+    .btn-primary:hover {
+      background: #00e5ff;
+      box-shadow: 0 0 40px rgba(0,212,255,0.55);
+      transform: translateY(-2px);
+    }
+    .btn-ghost {
+      background: transparent; color: var(--text);
+      font-size: 14px; font-weight: 500;
+      padding: 15px 26px; border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.12);
+      cursor: pointer; font-family: var(--ff);
+      transition: all 0.2s;
+    }
+    .btn-ghost:hover {
+      border-color: var(--neon); color: var(--neon);
+      background: rgba(0,212,255,0.05);
+    }
+    .hero-stats {
+      display: flex; gap: 36px;
+      margin-top: 52px; padding-top: 44px;
+      border-top: 1px solid var(--border);
+    }
+    .stat-item .num {
+      font-family: var(--fp); font-size: 34px; font-weight: 900;
+      color: var(--neon); letter-spacing: -1.5px;
+      line-height: 1;
+    }
+    .stat-item .lbl { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+    /* Hero Visual */
+    .hero-visual {
+      display: flex; align-items: center;
+      justify-content: center; position: relative;
+    }
+    .owl-container {
+      position: relative; width: 380px; height: 380px;
+    }
+    .owl-ring {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 360px; height: 360px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      animation: spin 20s linear infinite;
+    }
+    .owl-ring2 {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 290px; height: 290px;
+      border: 1px dashed rgba(0,212,255,0.1);
+      border-radius: 50%;
+      animation: spin 14s linear infinite reverse;
+    }
+    @keyframes spin { from{transform:translate(-50%,-50%) rotate(0deg);} to{transform:translate(-50%,-50%) rotate(360deg);} }
+    .owl-glow {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 260px; height: 260px;
+      background: radial-gradient(circle, rgba(0,212,255,0.18) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: glowPulse 3s ease-in-out infinite;
+    }
+    @keyframes glowPulse { 0%,100%{opacity:0.7;transform:translate(-50%,-50%) scale(1);} 50%{opacity:1;transform:translate(-50%,-50%) scale(1.12);} }
+    .owl-img {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 230px; height: 230px;
+      object-fit: contain; border-radius: 50%;
+      z-index: 2;
+    }
+    .float-tag {
+      position: absolute; z-index: 3;
+      background: rgba(8,15,23,0.92);
+      border: 1px solid var(--border2);
+      border-radius: 12px; padding: 12px 16px;
+      font-size: 12px; font-weight: 600;
+      backdrop-filter: blur(12px);
+      animation: floatY 4s ease-in-out infinite;
+    }
+    .float-tag .val {
+      color: var(--neon); font-size: 20px;
+      font-family: var(--fp); font-weight: 800;
+      line-height: 1;
+    }
+    .float-tag .lbl { color: var(--muted); font-size: 11px; margin-top: 3px; }
+    .float-tag1 { top: 30px; right: 0px; animation-delay: 0s; }
+    .float-tag2 { bottom: 40px; left: -10px; animation-delay: 2s; }
+    @keyframes floatY { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
+
+    /* Ring dots */
+    .ring-dot {
+      position: absolute; top: 50%; left: 50%;
+      width: 8px; height: 8px;
+      background: var(--neon);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--neon);
+      z-index: 3;
+    }
+
+    /* ─── TAGLINE STRIP ─── */
+    .tagline-strip {
+      background: var(--neon); padding: 16px 6%;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .tagline-strip::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(0,0,0,0.04) 60px, rgba(0,0,0,0.04) 61px);
+    }
+    .tagline-strip p {
+      color: var(--dark);
+      font-family: var(--fp); font-size: 15px;
+      font-weight: 800; letter-spacing: 0.5px;
+      position: relative;
+    }
+
+    /* ─── MARQUEE ─── */
+    .marquee-section {
+      padding: 32px 0; background: var(--dark2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .marquee-track {
+      display: flex; gap: 0;
+      animation: marquee 20s linear infinite;
+      white-space: nowrap;
+    }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 0 40px; font-size: 13px;
+      color: var(--muted); font-weight: 500;
+    }
+    .marquee-item .dot { color: var(--neon); font-size: 18px; }
+    @keyframes marquee { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+
+    /* ─── ABOUT ─── */
+    .about { background: var(--dark2); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .about-text h2 {
+      font-family: var(--fp);
+      font-size: clamp(32px,4vw,50px);
+      font-weight: 900; letter-spacing: -2px;
+      line-height: 1.08; margin-bottom: 22px;
+    }
+    .about-text h2 .accent { color: var(--neon); }
+    .about-text p {
+      color: var(--muted); font-size: 16px;
+      line-height: 1.78; margin-bottom: 16px;
+    }
+    .why-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin-top: 32px;
+    }
+    .why-card {
+      background: var(--dark3);
+      border: 1px solid var(--border);
+      border-radius: 14px; padding: 22px;
+      transition: all 0.25s; cursor: default;
+    }
+    .why-card:hover {
+      border-color: var(--border2);
+      background: var(--card);
+      transform: translateY(-3px);
+    }
+    .why-icon {
+      width: 38px; height: 38px;
+      background: rgba(0,212,255,0.08);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px; font-size: 17px;
+    }
+    .why-card h4 {
+      font-family: var(--fp); font-size: 13px;
+      font-weight: 700; margin-bottom: 6px;
+    }
+    .why-card p { font-size: 12px; color: var(--muted); line-height: 1.65; }
+
+    .about-visual { display: flex; flex-direction: column; gap: 16px; }
+    .metric-big {
+      background: var(--dark3);
+      border: 1px solid var(--border);
+      border-radius: 18px; padding: 32px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .metric-big::before {
+      content: '';
+      position: absolute; top: -30px; left: 50%; transform: translateX(-50%);
+      width: 200px; height: 100px;
+      background: radial-gradient(circle, rgba(0,212,255,0.12) 0%, transparent 70%);
+    }
+    .metric-big .m-num {
+      font-family: var(--fp); font-size: 56px;
+      font-weight: 900; color: var(--neon);
+      letter-spacing: -3px; line-height: 1;
+      position: relative;
+    }
+    .metric-big .m-lbl { font-size: 13px; color: var(--muted); margin-top: 8px; }
+    .metric-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .metric-sm {
+      background: var(--dark3); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px; text-align: center;
+      transition: border-color 0.2s;
+    }
+    .metric-sm:hover { border-color: var(--border2); }
+    .metric-sm .m-num {
+      font-family: var(--fp); font-size: 28px;
+      font-weight: 800; color: var(--neon); letter-spacing: -1px;
+    }
+    .metric-sm .m-lbl { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+    /* ─── SERVICES ─── */
+    .services { background: var(--dark); }
+    .section-header { text-align: center; max-width: 620px; margin: 0 auto 64px; }
+    .section-header h2 {
+      font-family: var(--fp);
+      font-size: clamp(32px,4vw,50px);
+      font-weight: 900; letter-spacing: -2px;
+      line-height: 1.08; margin-bottom: 14px;
+    }
+    .section-header h2 .accent { color: var(--neon); }
+    .section-header p { color: var(--muted); font-size: 16px; line-height: 1.7; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .service-card {
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 18px; padding: 30px;
+      cursor: pointer; transition: all 0.28s;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--neon), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .service-card::after {
+      content: ''; position: absolute;
+      top: -60px; right: -60px;
+      width: 140px; height: 140px;
+      background: radial-gradient(circle, rgba(0,212,255,0.07) 0%, transparent 70%);
+      border-radius: 50%;
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .service-card:hover {
+      border-color: rgba(0,212,255,0.35);
+      transform: translateY(-6px);
+      background: var(--card);
+    }
+    .service-card:hover::before { opacity: 1; }
+    .service-card:hover::after { opacity: 1; }
+    .svc-icon {
+      width: 52px; height: 52px;
+      background: rgba(0,212,255,0.07);
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      display: flex; align-items: center;
+      justify-content: center; font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .service-card h3 {
+      font-family: var(--fp); font-size: 17px;
+      font-weight: 700; margin-bottom: 10px;
+    }
+    .service-card p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+    .svc-arrow {
+      display: inline-block;
+      color: var(--neon); font-size: 18px;
+      margin-top: 18px; font-weight: 700;
+      transition: transform 0.2s;
+    }
+    .service-card:hover .svc-arrow { transform: translateX(5px); }
+
+    /* ─── RESULTS ─── */
+    .results { background: var(--dark2); }
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 24px; margin-top: 20px;
+    }
+    .case-card {
+      background: var(--dark3);
+      border: 1px solid var(--border);
+      border-radius: 18px; padding: 34px;
+      position: relative; overflow: hidden;
+      transition: all 0.25s;
+    }
+    .case-card:hover {
+      border-color: var(--border2);
+      transform: translateY(-4px);
+    }
+    .case-card::after {
+      content: ''; position: absolute;
+      top: -50px; right: -50px;
+      width: 160px; height: 160px;
+      background: radial-gradient(circle, rgba(0,212,255,0.07) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .case-industry {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--neon); margin-bottom: 14px;
+    }
+    .case-card h3 {
+      font-family: var(--fp);
+      font-size: 21px; font-weight: 800;
+      line-height: 1.25; margin-bottom: 14px;
+      letter-spacing: -0.5px;
+    }
+    .case-card > p {
+      font-size: 14px; color: var(--muted);
+      line-height: 1.7; margin-bottom: 28px;
+    }
+    .case-divider {
+      height: 1px; background: var(--border);
+      margin-bottom: 24px;
+    }
+    .case-metrics { display: flex; gap: 28px; flex-wrap: wrap; }
+    .case-m .val {
+      font-family: var(--fp); font-size: 28px;
+      font-weight: 900; color: var(--neon);
+      letter-spacing: -1px; line-height: 1;
+    }
+    .case-m .desc { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+    /* ─── PROCESS ─── */
+    .process { background: var(--dark); }
+    .process-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; position: relative; margin-top: 20px;
+    }
+    .process-line {
+      position: absolute; top: 34px; left: 12%; right: 12%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--neon), var(--neon), transparent);
+      opacity: 0.5;
+    }
+    .step-item { text-align: center; padding: 0 20px; }
+    .step-num {
+      width: 70px; height: 70px;
+      background: var(--dark2);
+      border: 2px solid var(--neon);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--fp); font-size: 22px; font-weight: 900;
+      color: var(--neon); margin: 0 auto 22px;
+      box-shadow: 0 0 20px rgba(0,212,255,0.2);
+      transition: all 0.25s;
+    }
+    .step-item:hover .step-num {
+      background: rgba(0,212,255,0.1);
+      box-shadow: 0 0 30px rgba(0,212,255,0.4);
+    }
+    .step-item h3 {
+      font-family: var(--fp); font-size: 17px;
+      font-weight: 700; margin-bottom: 10px;
+    }
+    .step-item p { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials { background: var(--dark2); }
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px; margin-top: 20px;
+    }
+    .testi-card {
+      background: var(--dark3);
+      border: 1px solid var(--border);
+      border-radius: 18px; padding: 30px;
+      transition: all 0.25s;
+    }
+    .testi-card:hover {
+      border-color: var(--border2);
+      transform: translateY(-4px);
+    }
+    .testi-stars {
+      color: var(--neon); font-size: 14px;
+      margin-bottom: 18px; letter-spacing: 3px;
+    }
+    .testi-card blockquote {
+      font-size: 15px; line-height: 1.75;
+      color: var(--text); font-style: italic;
+      margin-bottom: 22px;
+      border-left: 2px solid var(--border2);
+      padding-left: 16px;
+    }
+    .testi-author {
+      display: flex; align-items: center; gap: 14px;
+      padding-top: 18px; border-top: 1px solid var(--border);
+    }
+    .testi-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: rgba(0,212,255,0.12);
+      border: 1px solid var(--border2);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 14px; color: var(--neon);
+      font-family: var(--fp);
+    }
+    .testi-name { font-size: 14px; font-weight: 600; }
+    .testi-role { font-size: 12px; color: var(--muted); }
+
+    /* ─── CTA ─── */
+    .cta-section {
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute; top: -60%; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 500px;
+      background: radial-gradient(ellipse, rgba(0,212,255,0.07) 0%, transparent 65%);
+    }
+    .cta-section .container { position: relative; z-index: 1; }
+    .cta-section h2 {
+      font-family: var(--fp);
+      font-size: clamp(38px,5.5vw,62px);
+      font-weight: 900; letter-spacing: -2.5px;
+      line-height: 1.08; margin-bottom: 18px;
+      max-width: 720px; margin-left: auto; margin-right: auto;
+    }
+    .cta-section h2 .accent { color: var(--neon); }
+    .cta-section > .container > p {
+      color: var(--muted); font-size: 17px;
+      max-width: 500px; margin: 0 auto 40px; line-height: 1.7;
+    }
+    .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .cta-note { margin-top: 18px; font-size: 12px; color: var(--muted); }
+    .cta-badges {
+      display: flex; justify-content: center; gap: 28px;
+      margin-top: 40px; flex-wrap: wrap;
+    }
+    .cta-badge {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; color: var(--muted);
+    }
+    .cta-badge .check { color: var(--neon); font-weight: 700; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark2);
+      border-top: 1px solid var(--border);
+      padding: 72px 6% 36px;
+    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-grid {
+      display: grid; grid-template-columns: 2.2fr 1fr 1fr 1fr;
+      gap: 52px; margin-bottom: 52px;
+    }
+    .footer-brand .logo { margin-bottom: 16px; }
+    .footer-brand p {
+      font-size: 13px; color: var(--muted);
+      line-height: 1.75; max-width: 260px;
+    }
+    .footer-contact {
+      margin-top: 20px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .footer-contact-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px;
+    }
+    .footer-contact-item .icon { font-size: 14px; }
+    .footer-contact-item span { color: var(--neon); }
+    .footer-col h5 {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 18px;
+    }
+    .footer-col a {
+      display: block; font-size: 13px; color: rgba(232,244,248,0.65);
+      margin-bottom: 12px; transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--neon); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 28px; border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--muted);
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-tagline {
+      color: var(--neon); font-style: italic;
+      font-family: var(--fp); font-weight: 700;
+    }
+    .social-links { display: flex; gap: 10px; }
+    .social-btn {
+      width: 36px; height: 36px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; cursor: pointer; transition: all 0.2s;
+    }
+    .social-btn:hover {
+      border-color: var(--neon);
+      background: rgba(0,212,255,0.08);
+      transform: translateY(-2px);
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+    .fade-in-delay-3 { transition-delay: 0.3s; }
+    .fade-in-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-visual { display: none; }
+      .process-steps { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .process-line { display: none; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 72px 5%; }
+      .hero { padding: 100px 5% 72px; }
+      .hero h1 { letter-spacing: -1.5px; }
+      .nav-links { display: none; }
+      .hero-stats { gap: 20px; }
+      .process-steps { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Cursor glow -->
+<div id="cursor-glow"></div>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo">
+      <div class="logo-icon">🦉</div>
+      Owl<span class="accent">nest</span>Media
+    </div>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#results">Work</a>
+      <a href="#process">Process</a>
+      <a href="#about">About</a>
+    </div>
+    <button class="nav-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Book Free Call</button>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Mumbai's #1 Performance Agency
+      </div>
+      <h1>We Don't Run Ads.<br><span class="line2">We Engineer Growth.</span></h1>
+      <p class="hero-sub">Performance marketing, branding, and digital strategy that turn your brand into a market leader. No fluff — just results that compound.</p>
+      <div class="hero-ctas">
+        <button class="btn-primary" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Get Free Strategy Call →</button>
+        <button class="btn-ghost" onclick="document.getElementById('results').scrollIntoView({behavior:'smooth'})">View Case Studies</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="num">₹12Cr+</div>
+          <div class="lbl">Revenue Generated</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">85+</div>
+          <div class="lbl">Brands Scaled</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">4.9★</div>
+          <div class="lbl">Client Rating</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="owl-container">
+        <div class="owl-ring"></div>
+        <div class="owl-ring2"></div>
+        <div class="owl-glow"></div>
+        <!-- Replace the src below with your actual owl logo path if hosting -->
+        <img src="https://via.placeholder.com/230x230/050A0F/00D4FF?text=🦉" class="owl-img" alt="Owlnest Media">
+        <div class="float-tag float-tag1">
+          <div class="val">3.8x</div>
+          <div class="lbl">Avg ROAS</div>
+        </div>
+        <div class="float-tag float-tag2">
+          <div class="val">+240%</div>
+          <div class="lbl">Organic Growth</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TAGLINE STRIP ─── -->
+<div class="tagline-strip">
+  <p>🚀 &nbsp;&nbsp; Brand ko do Digital Pankh &nbsp;—&nbsp; owlnestmedia.com &nbsp;&nbsp;|&nbsp;&nbsp; +91 89836 26846 &nbsp;&nbsp;|&nbsp;&nbsp; Mumbai, India</p>
+</div>
+
+<!-- ─── MARQUEE ─── -->
+<div class="marquee-section">
+  <div class="marquee-track" id="marqueeTrack">
+    <span class="marquee-item"><span class="dot">✦</span> Performance Marketing</span>
+    <span class="marquee-item"><span class="dot">✦</span> Social Media Strategy</span>
+    <span class="marquee-item"><span class="dot">✦</span> SEO & Content</span>
+    <span class="marquee-item"><span class="dot">✦</span> Website Design & Dev</span>
+    <span class="marquee-item"><span class="dot">✦</span> Brand Identity</span>
+    <span class="marquee-item"><span class="dot">✦</span> Meta & Google Ads</span>
+    <span class="marquee-item"><span class="dot">✦</span> Lead Generation</span>
+    <span class="marquee-item"><span class="dot">✦</span> Conversion Optimization</span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee-item"><span class="dot">✦</span> Performance Marketing</span>
+    <span class="marquee-item"><span class="dot">✦</span> Social Media Strategy</span>
+    <span class="marquee-item"><span class="dot">✦</span> SEO & Content</span>
+    <span class="marquee-item"><span class="dot">✦</span> Website Design & Dev</span>
+    <span class="marquee-item"><span class="dot">✦</span> Brand Identity</span>
+    <span class="marquee-item"><span class="dot">✦</span> Meta & Google Ads</span>
+    <span class="marquee-item"><span class="dot">✦</span> Lead Generation</span>
+    <span class="marquee-item"><span class="dot">✦</span> Conversion Optimization</span>
+  </div>
+</div>
+
+<!-- ─── ABOUT ─── -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text fade-in">
+        <div class="section-tag">About Us</div>
+        <h2>Rooted in Mumbai.<br><span class="accent">Built for the World.</span></h2>
+        <p>Owlnest Media was built on one conviction: most businesses deserve far better marketing than what they're getting. We combine data intelligence with creative firepower to deliver performance that actually moves the needle.</p>
+        <p>We don't see ourselves as a vendor — we are a growth partner. Every brand we work with gets our complete strategic attention, not just managed ad spend and a monthly report.</p>
+        <div class="why-grid">
+          <div class="why-card fade-in fade-in-delay-1">
+            <div class="why-icon">⚡</div>
+            <h4>Performance-First</h4>
+            <p>Every decision is backed by real data, not guesswork or gut feel.</p>
+          </div>
+          <div class="why-card fade-in fade-in-delay-2">
+            <div class="why-icon">🎯</div>
+            <h4>Precision Targeting</h4>
+            <p>Right audience, right time, right message — always.</p>
+          </div>
+          <div class="why-card fade-in fade-in-delay-3">
+            <div class="why-icon">📈</div>
+            <h4>Full-Funnel Thinking</h4>
+            <p>From awareness to conversion — we own the entire growth journey.</p>
+          </div>
+          <div class="why-card fade-in fade-in-delay-4">
+            <div class="why-icon">🔒</div>
+            <h4>Radical Transparency</h4>
+            <p>Real reporting. No vanity metrics. No hidden markups. Ever.</p>
+          </div>
+        </div>
+      </div>
+      <div class="about-visual fade-in">
+        <div class="metric-big">
+          <div class="m-num">₹12Cr+</div>
+          <div class="m-lbl">Total Revenue Generated for Clients</div>
+        </div>
+        <div class="metric-row">
+          <div class="metric-sm"><div class="m-num">85+</div><div class="m-lbl">Brands Scaled</div></div>
+          <div class="metric-sm"><div class="m-num">3.8x</div><div class="m-lbl">Avg ROAS</div></div>
+          <div class="metric-sm"><div class="m-num">97%</div><div class="m-lbl">Client Retention</div></div>
+          <div class="metric-sm"><div class="m-num">5 Yrs</div><div class="m-lbl">Market Experience</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICES ─── -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-tag">What We Do</div>
+      <h2>End-to-End <span class="accent">Digital Growth</span></h2>
+      <p>From traffic acquisition to conversion — we handle every layer of your digital presence so you can focus on running the business.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-in fade-in-delay-1">
+        <div class="svc-icon">🎯</div>
+        <h3>Performance Marketing</h3>
+        <p>Meta, Google, and YouTube campaigns engineered for maximum ROAS. We optimize every rupee for measurable, scalable business outcomes.</p>
+        <span class="svc-arrow">→</span>
+      </div>
+      <div class="service-card fade-in fade-in-delay-2">
+        <div class="svc-icon">📱</div>
+        <h3>Social Media Marketing</h3>
+        <p>Content strategy, community growth, and social ads that convert followers into buyers and turn your brand into a community.</p>
+        <span class="svc-arrow">→</span>
+      </div>
+      <div class="service-card fade-in fade-in-delay-3">
+        <div class="svc-icon">🔍</div>
+        <h3>Search Engine Optimization</h3>
+        <p>Technical SEO, content strategy, and authority building that puts your brand on page 1 — and sustains it for the long term.</p>
+        <span class="svc-arrow">→</span>
+      </div>
+      <div class="service-card fade-in fade-in-delay-4">
+        <div class="svc-icon">💻</div>
+        <h3>Website Design & Dev</h3>
+        <p>High-converting, blazing-fast websites built on modern stacks. Designed for performance, not just aesthetics — they rank, load, and convert.</p>
+        <span class="svc-arrow">→</span>
+      </div>
+      <div class="service-card fade-in fade-in-delay-1">
+        <div class="svc-icon">✦</div>
+        <h3>Branding & Identity</h3>
+        <p>Brand strategy, visual identity, and messaging frameworks that command premium positioning and make your brand impossible to ignore.</p>
+        <span class="svc-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── RESULTS ─── -->
+<section class="results" id="results">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-tag">Case Studies</div>
+      <h2>Results That <span class="accent">Speak Loudest</span></h2>
+      <p>Real brands. Real numbers. No fabricated screenshots or padded metrics.</p>
+    </div>
+    <div class="results-grid">
+      <div class="case-card fade-in fade-in-delay-1">
+        <div class="case-industry">D2C Fashion · Mumbai</div>
+        <h3>₹80K/month to ₹6.2L/month — in 90 days flat</h3>
+        <p>Rebuilt their entire Meta funnel from scratch, introduced UGC creatives and reduced CPA by 61% while tripling daily ad spend efficiently.</p>
+        <div class="case-divider"></div>
+        <div class="case-metrics">
+          <div class="case-m"><div class="val">7.8x</div><div class="desc">ROAS Achieved</div></div>
+          <div class="case-m"><div class="val">−61%</div><div class="desc">Cost per Acquisition</div></div>
+          <div class="case-m"><div class="val">+675%</div><div class="desc">Monthly Revenue</div></div>
+        </div>
+      </div>
+      <div class="case-card fade-in fade-in-delay-2">
+        <div class="case-industry">EdTech Startup · Pan India</div>
+        <h3>2,400 course enrollments in first 45 days of launch</h3>
+        <p>Built entire launch strategy from ground up — Google + Meta + SEO working in tandem. Outperformed their own Q1 projections by 3x.</p>
+        <div class="case-divider"></div>
+        <div class="case-metrics">
+          <div class="case-m"><div class="val">2,400</div><div class="desc">Enrollments</div></div>
+          <div class="case-m"><div class="val">₹210</div><div class="desc">Avg Cost per Lead</div></div>
+          <div class="case-m"><div class="val">3x</div><div class="desc">Above Projections</div></div>
+        </div>
+      </div>
+      <div class="case-card fade-in fade-in-delay-3">
+        <div class="case-industry">Real Estate · Pune</div>
+        <h3>186 qualified site visits in one quarter via pure digital</h3>
+        <p>Replaced offline lead gen dependency entirely — Facebook leads to WhatsApp automation to CRM. Zero dependency on brokerage.</p>
+        <div class="case-divider"></div>
+        <div class="case-metrics">
+          <div class="case-m"><div class="val">186</div><div class="desc">Site Visits</div></div>
+          <div class="case-m"><div class="val">4.2x</div><div class="desc">Lead Quality Score</div></div>
+          <div class="case-m"><div class="val">−48%</div><div class="desc">Cost per Lead</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROCESS ─── -->
+<section class="process" id="process">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-tag">How We Work</div>
+      <h2>A System Built for <span class="accent">Compounding Growth</span></h2>
+      <p>We don't improvise. Every engagement follows a battle-tested 4-step framework.</p>
+    </div>
+    <div class="process-steps fade-in">
+      <div class="process-line"></div>
+      <div class="step-item">
+        <div class="step-num">01</div>
+        <h3>Discovery</h3>
+        <p>Deep audit of your brand, market landscape, competition, and current digital footprint.</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">02</div>
+        <h3>Strategy</h3>
+        <p>Custom growth roadmap with channel selection, budget allocation, and KPI targets.</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">03</div>
+        <h3>Execution</h3>
+        <p>Rapid deployment with weekly optimization cycles and full-transparency reporting.</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">04</div>
+        <h3>Scale</h3>
+        <p>Double down on what works. Expand to new channels. Remove the growth ceiling.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ─── -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-tag">Testimonials</div>
+      <h2>Heard It Straight <span class="accent">From Our Clients</span></h2>
+      <p>We let results do the talking — but our clients have a few things to add.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card fade-in fade-in-delay-1">
+        <div class="testi-stars">★★★★★</div>
+        <blockquote>"Owlnest Media didn't just run our ads — they rebuilt how we think about marketing entirely. Our revenue tripled in 4 months and the team was transparent at every single step."</blockquote>
+        <div class="testi-author">
+          <div class="testi-avatar">RK</div>
+          <div>
+            <div class="testi-name">Rahul Kapoor</div>
+            <div class="testi-role">Founder, StyleCraft India</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card fade-in fade-in-delay-2">
+        <div class="testi-stars">★★★★★</div>
+        <blockquote>"We'd tried 3 agencies before Owlnest. They were the first team that actually understood our business model, not just the ad platform. Our CAC dropped 55% in 60 days."</blockquote>
+        <div class="testi-author">
+          <div class="testi-avatar">PS</div>
+          <div>
+            <div class="testi-name">Priya Shetty</div>
+            <div class="testi-role">CEO, LearnEdge Academy</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card fade-in fade-in-delay-3">
+        <div class="testi-stars">★★★★★</div>
+        <blockquote>"Global agency quality at a fair price. The live reporting dashboard they set up gave us more visibility than we've ever had. Google page 4 to page 1 in under 3 months."</blockquote>
+        <div class="testi-author">
+          <div class="testi-avatar">AM</div>
+          <div>
+            <div class="testi-name">Aditya Mehta</div>
+            <div class="testi-role">Director, Horizon Realty</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="cta-section" id="cta">
+  <div class="container fade-in">
+    <div class="section-tag" style="margin: 0 auto 26px; display: block; width: fit-content;">Limited Onboarding Spots</div>
+    <h2>Ready to Give Your Brand<br><span class="accent">Digital Pankh?</span></h2>
+    <p>Book a free 30-minute strategy call. We'll audit your current digital presence and show you exactly where the growth is hiding.</p>
+    <div class="cta-btns">
+      <button class="btn-primary" style="font-size:15px;padding:17px 34px;" onclick="window.open('tel:+918983626846')">Book Free Strategy Call →</button>
+      <button class="btn-ghost" style="font-size:15px;padding:17px 30px;">Get a Proposal</button>
+    </div>
+    <p class="cta-note">No commitment. No pitch deck. Just a real conversation about your growth.</p>
+    <div class="cta-badges">
+      <div class="cta-badge"><span class="check">✓</span> Free 30-min audit</div>
+      <div class="cta-badge"><span class="check">✓</span> No agency jargon</div>
+      <div class="cta-badge"><span class="check">✓</span> Results within 30 days</div>
+      <div class="cta-badge"><span class="check">✓</span> Transparent pricing</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-icon">🦉</div>
+          Owl<span class="accent">nest</span>Media
+        </div>
+        <p>Mumbai's premier performance marketing and digital growth agency. We give your brand the digital wings it deserves.</p>
+        <div class="footer-contact">
+          <div class="footer-contact-item">
+            <span class="icon">📞</span>
+            <span>+91 89836 26846</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="icon">📍</span>
+            Mumbai, Maharashtra, India
+          </div>
+          <div class="footer-contact-item">
+            <span class="icon">🌐</span>
+            <span>owlnestmedia.com</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <a href="#services">Performance Marketing</a>
+        <a href="#services">Social Media</a>
+        <a href="#services">SEO</a>
+        <a href="#services">Web Design</a>
+        <a href="#services">Branding</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="#about">About Us</a>
+        <a href="#results">Case Studies</a>
+        <a href="#process">Our Process</a>
+        <a href="#cta">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h5>Connect</h5>
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">Facebook</a>
+        <a href="#">YouTube</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Owlnest Media. All rights reserved.</span>
+      <div class="social-links">
+        <div class="social-btn">📸</div>
+        <div class="social-btn">💼</div>
+        <div class="social-btn">📘</div>
+        <div class="social-btn">▶️</div>
+      </div>
+      <span class="footer-tagline">Brand ko do Digital Pankh ✦</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Cursor glow
+  const glow = document.getElementById('cursor-glow');
+  document.addEventListener('mousemove', e => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top = e.clientY + 'px';
+  });
+
+  // Scroll fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Nav scroll style
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      nav.style.borderBottomColor = 'rgba(0,212,255,0.2)';
+    } else {
+      nav.style.borderBottomColor = 'rgba(0,212,255,0.13)';
+    }
+  });
+
+  // Counter animation
+  function animateCounter(el, target, prefix = '', suffix = '') {
+    const duration = 1800;
+    const start = performance.now();
+    const update = (time) => {
+      const progress = Math.min((time - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.floor(eased * target);
+      el.textContent = prefix + current.toLocaleString('en-IN') + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    };
+    requestAnimationFrame(update);
+  }
+
+  // Trigger counters when visible
+  const metricObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.animated) {
+        entry.target.dataset.animated = 'true';
+        const el = entry.target;
+        const raw = el.textContent.trim();
+        if (raw === '₹12Cr+') { el.textContent = '₹0'; animateCounter(el, 12, '₹', 'Cr+'); }
+        else if (raw === '85+') animateCounter(el, 85, '', '+');
+        else if (raw === '97%') animateCounter(el, 97, '', '%');
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.m-num').forEach(el => metricObserver.observe(el));
+</script>
+</body>
+</html>
